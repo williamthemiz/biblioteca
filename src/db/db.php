@@ -1,13 +1,16 @@
 <?php  
 class Connection {
-  public static function conect(){
-    $connection=new mysqli(SERVER,USER,PASS,BASE);
-    $connection->set_charset(CHAR);
-    if ($connection->connect_error) {
-    	die("Connection failed: " . $connection->connect_error);
-		}
-    return $connection;
+  public static function connect(){
+    try {
+      $connection= new PDO(DATABASE, USER, PASS);
+      $connection->exec("SET CHARACTER SET utf8");
+      $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+      $connection->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+      return $connection;
+    } catch (PDOException $e) {
+      print "Error connecting!: " . $e->getMessage();
+      die();
+    }
   }
 }
-
 ?>

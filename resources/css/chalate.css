@@ -1,0 +1,44 @@
+.modalModificarCategoria{
+	height:100px;
+	border-radius:25px;
+}
+.modalModificarCategoria h6{
+	margin:25px;
+}
+.modalModificarLibro{
+	border-radius: 25px;
+}
+#modal2{
+	height: 95%;
+	min-height: 75% !important;
+	width: 75%;
+
+}
+.texto-modal{
+	margin:60px;
+	margin-right: 0px; 
+}
+#containerModLibro{
+	width: 95% !important;
+}
+#container1ModLibro{
+	width: 95% !important;
+}
+.input-modal{
+	    margin: 15px!important; 
+}
+#imagen-perfil{
+	width:250px;
+	height:250px;
+	margin: 25px; 
+}
+.modalModDatos{
+	border-radius: 25px;
+}
+.modal-contraseña{
+	border-radius: 25px !important;
+	width: 50%;
+}
+.row{
+	margin-bottom: 7px !important;
+}

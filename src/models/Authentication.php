@@ -1,10 +1,8 @@
-<?php  
-require_once "conexion.php";
-
+<?php
 class Autenticacion {
 	
 	function __construct(){
-    $this->conexion = Conexion::conectar();
+    $this->connection = Connection::conect();
 	}
 
 	function obtenerClave($usuario)

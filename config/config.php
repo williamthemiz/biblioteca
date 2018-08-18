@@ -1,8 +1,7 @@
-<?php  
-define('SERVER',"localhost");
+<?php
+define('DATABASE', 'mysql:host=localhost;dbname=biblioteca');  
 define('USER',"root");
-define('PASS',"");
-define('BASE', "biblioteca");
-define('CHAR', "utf8");
+define('PASS',"root");
+define('CHARSET', "utf8");
 define('PROJECT_ROOT', dirname(__DIR__)); 
 ?>

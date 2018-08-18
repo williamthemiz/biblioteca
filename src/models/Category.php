@@ -6,7 +6,7 @@ class Category {
   private $connection;
 	
 	function __construct(){
-		$this->connection = Connection::conect();
+		$this->connection = Connection::connect();
   }
 
 	public function setName($name){
@@ -30,8 +30,11 @@ class Category {
   }
 
 	function getAll(){
-		$categories = $this->connection->query("SELECT * FROM categorias WHERE activo = 1");
-	  return $categories;	
+    $query = "SELECT * FROM categorias WHERE activo = 1";
+    $statement = $this->connection->prepare($query);
+    $statement->execute();
+    $categories = $statement->fetchAll(PDO::FETCH_ASSOC);
+	  return $categories;
 	}
 
 	function get($id){ //cambiar a prepared
@@ -40,7 +43,11 @@ class Category {
   }
   
 	function filterByName($name){
-		$category = $this->connection->query("SELECT * FROM categorias WHERE nombre LIKE '%".$name."%' AND activo=1");
+    $query = "SELECT * FROM categorias WHERE nombre LIKE %:name% AND activo=1";
+    $statement = $this->connection->prepare($query);
+    $statement->bindParam(':name', $name, PDO::PARAM_STR);
+    $statement->execute();
+		$category = $statement->fetch(PDO::FETCH_ASSOC);
 		return $category;
 	}
 
