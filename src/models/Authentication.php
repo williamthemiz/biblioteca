@@ -1,32 +1,35 @@
 <?php
-class Autenticacion {
-	
-	function __construct(){
+class Authentication {
+	private $user;
+	private $password;
+	private $credentials;
+
+	function __construct($user, $password){
+		$this->user = $user;
+		$this->password = $password;
     $this->connection = Connection::conect();
 	}
 
-	function obtenerClave($usuario)
-	{
-		$statement = $this->conexion->prepare("SELECT pass FROM login WHERE user=? AND activo=1");
-		$statement->bind_param("s",$usuario);
+	function getCredentials(){
+		$query = "SELECT role,pass FROM login WHERE user = :user AND active = 1";
+		$statement = $this->conexion->prepare($query);
+		$statement->bindParam(":user",$this->user);
 		$statement->execute();
 		$statement->bind_result($clave);
-		$statement->fetch();
-	 return $clave;
+		$credentials = $statement->fetch(PDO::FETCH_ASSOC);
+	  $this->credentials = $credentials;
 	}
 
-	function obtenerRol($usuario)
-	{
-		$statement = $this->conexion->prepare("SELECT rol FROM login WHERE user=? AND activo=1");
-		$statement->bind_param("s",$usuario);
-		$statement->execute();
-		$statement->bind_result($rol);
-		$statement->fetch();
-	 return $rol;
+	function getRole(){
+		return $this->credentials["role"];
+	}
+
+	function verify(){
+		$this->getCredentials();
+		if (sha1($this->password) === $this->credentials["pass"]) {
+			return true;
+		}
+		return false;
 	}
 }
-
-
-
-
 ?>
