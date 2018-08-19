@@ -1,0 +1,24 @@
+<nav>
+	<div class="nav-wrapper red darken-4">
+		<a href="#" class="brand-logo"> Biblioteca Sede Central</a>
+		<ul id="nav-mobile" class="right hide-on-med-and-down">
+			<li class="active"><a href="index.php">Catálogo</a></li>
+      {% if rol is same as(1) %} 
+				<li><a href="php/libros.php">Libros</a></li>
+				<li><a href="php/prestamos.php">Prestamos</a></li>
+				<li><a href="php/devoluciones.php">Devoluciones</a></li>
+				<li><a href="php/pedidos.php">Pedidos</a></li>
+				<li><a href="php/usuarios.php">Usuarios</a></li>
+			{% elseif rol is same as(2) %}
+				<li><a href="php/libros.php">Libros</a></li>
+				<li><a href="php/prestamos.php">Prestamos</a></li>
+				<li><a href="php/devoluciones.php">Devoluciones</a></li>
+				<li><a href="php/pedidos.php">Pedidos</a></li>
+			{% else %}
+				<li><a href="php/prestamos.php">Mis Prestamos</a></li>
+      {% endif %}
+			<li><a href="php/perfil.php">Perfil</a></li>
+			<li><a href="php/procesos/logout.php"><i class="material-icons">power_settings_new</i></a></li>
+		</ul>
+	</div>
+</nav>

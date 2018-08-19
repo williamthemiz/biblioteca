@@ -1,0 +1,60 @@
+{% include 'header.html.twig' %}
+{% include 'navbar.html.twig' %}
+
+<div class="row catalogo">
+	<form id="frmBuscar">
+		<div class="col s1">
+			<h4>Filtrar:</h4>
+		</div>
+	  <div class="input-field col s3">
+	    <input  type="search" id="busqueda">
+	    <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+	    <i id="limpiarBusqueda" class="material-icons">close</i>
+		</div>
+		<div class="input-field col s3">
+    	<select name="campo" id="campo">
+				<option value="todos">Todos</option>
+				<option value="titulo">Titulo</option>
+				<option value="codigo">Codigo</option>
+				<option value="autor">Autor</option>
+				<option value="descripcion">Descripción</option>
+			</select>
+    	<label>Buscar por:</label>
+  	</div>
+  	<div class="input-field col s3">
+    	<select name="categoria" id="categoria">
+				<option value="todas">Todas</option>
+				{% for category in categories %}
+        	<option value={{category.id}}>{{category.nombre}}</option>
+    		{% endfor %}
+   		</select>
+    	<label>Categoria:</label>
+  	</div>
+  	<button id="btnBuscar" type="submit" class="waves-effect waves-light btn red darken-4">
+			<i class="material-icons">search</i>Buscar
+		</button>
+	</form>
+</div>
+
+<div class="container menu">
+	<div class="row">
+		<div class="col s12 l12 catalogo-libros" id="libros">
+			{% for book in books %}
+        <div class="contenedor-img">
+			 		<img class='cover' src={{"../resources/imagenes/#{book.imagen}"}} alt={{book.imagen}}>
+			 		<a href={{"php/libro.php?l=#{libro.codigo}"}}>
+			 			<div class="overlay">
+    					<div class="texto">
+								<h6 class='titulo'>{{book.titulo}}</h6>
+								<p class='descripcion'>{{book.descripcion}}</p>
+								<p class='categoria'>Categoria: {{book.categoria}}</p>
+    					</div>
+ 						</div>
+ 					</a>
+			 	</div>
+    	{% endfor %}
+		</div>
+	</div>
+</div>
+
+{% include 'footer.html.twig' %}
