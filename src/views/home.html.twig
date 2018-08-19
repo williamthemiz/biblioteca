@@ -25,7 +25,7 @@
     	<select name="categoria" id="categoria">
 				<option value="todas">Todas</option>
 				{% for category in categories %}
-        	<option value={{category.id}}>{{category.nombre}}</option>
+        	<option value={{category.id}}>{{category.name}}</option>
     		{% endfor %}
    		</select>
     	<label>Categoria:</label>
@@ -41,13 +41,13 @@
 		<div class="col s12 l12 catalogo-libros" id="libros">
 			{% for book in books %}
         <div class="contenedor-img">
-			 		<img class='cover' src={{"../resources/imagenes/#{book.imagen}"}} alt={{book.imagen}}>
-			 		<a href={{"php/libro.php?l=#{libro.codigo}"}}>
+			 		<img class='cover' src={{"../resources/imagenes/#{book.image}"}} alt={{book.image}}>
+			 		<a href={{"php/libro.php?l=#{book.id}"}}>
 			 			<div class="overlay">
     					<div class="texto">
-								<h6 class='titulo'>{{book.titulo}}</h6>
-								<p class='descripcion'>{{book.descripcion}}</p>
-								<p class='categoria'>Categoria: {{book.categoria}}</p>
+								<h6 class='titulo'>{{book.title}}</h6>
+								<p class='descripcion'>{{book.description}}</p>
+								<p class='categoria'>Categoria: {{book.category}}</p>
     					</div>
  						</div>
  					</a>
