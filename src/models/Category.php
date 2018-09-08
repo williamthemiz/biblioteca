@@ -2,7 +2,6 @@
 class Category {
 	public $id;
 	public $name;
-  public $active = 1;
   private $connection;
 	
 	function __construct(){
@@ -10,7 +9,7 @@ class Category {
   }
 
 	function getAll(){
-    $query = "SELECT * FROM categories WHERE active = 1";
+    $query = "SELECT * FROM categories";
     $statement = $this->connection->prepare($query);
     $statement->execute();
     $categories = $statement->fetchAll(PDO::FETCH_ASSOC);
@@ -18,7 +17,7 @@ class Category {
 	}
 
 	function get(){
-    $query = "SELECT name FROM categories WHERE id = :id and active = 1";
+    $query = "SELECT name FROM categories WHERE id = :id";
     $statement = $this->connection->prepare($query);
     $statement->bindParam(':id',$this->id);
     $statement->execute();
@@ -27,10 +26,9 @@ class Category {
   }
 
 	function save(){
-    $query = "INSERT INTO categories (name,active) VALUES (:name,:active)";
+    $query = "INSERT INTO categories (name) VALUES (:name)";
     $statement = $this->connection->prepare($query);
     $statement->bindParam(':name', $this->name, PDO::PARAM_STR);
-    $statement->bindParam(':active', $this->active, PDO::PARAM_INT);
     $result = $statement->execute();
     return $result;
   }
@@ -44,21 +42,11 @@ class Category {
     return $result;
 	}
 	function delete(){
-    $query = "UPDATE categories SET active = :active WHERE id = :id";
-    $statement=$this->connection->prepare();
-    $statement->bindParam(':active',$this->active);
+    $query = "DELETE FROM categories WHERE id = :id";
+    $statement=$this->connection->prepare($query);
     $statement->bindParam(':id',$this->id);
     $result = $statement->execute();
     return $result;
   }
-  
-  function filterByName(){
-    $query = "SELECT * FROM categories WHERE name LIKE :name AND active = 1";
-    $statement = $this->connection->prepare($query);
-    $statement->bindParam(':name', "%" . $this->name . "%", PDO::PARAM_STR);
-    $statement->execute();
-		$category = $statement->fetch(PDO::FETCH_ASSOC);
-		return $category;
-	}
 }
 ?>
