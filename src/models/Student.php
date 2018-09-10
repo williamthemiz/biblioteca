@@ -6,6 +6,7 @@ class Student {
 	public $email;
 	public $address;
   public $phone;
+  private $connection;
   
   function __construct(){
 		$this->connection = Connection::connect();

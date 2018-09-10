@@ -7,7 +7,8 @@ class Employee {
 	public $address;
 	public $phone;
 	public $email;
-
+  private $connection;
+  
   function __construct(){
 		$this->connection = Connection::connect();
   }
