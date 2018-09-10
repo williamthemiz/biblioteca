@@ -1,6 +1,35 @@
 {% include 'header.html.twig' %}
 {% include 'navbar.html.twig' %}
 {% include 'books_submenu.html.twig' %}
-{% include 'books_add.html.twig' %}
-{% include 'books_admin.html.twig' %}
+
+<div id="admLibro">
+ 	<div  id="tablaLibro">
+ 		<table style="margin-bottom:400px"  class="striped">
+			<thead>
+        <tr>
+          <th >Código</th>
+          <th>Titulo</th>
+          <th>Autor</th>
+          <th>Editorial</th>
+          <th>Fecha de Publicación</th>
+          <th colspan="2" align="center">Accion</th>
+        </tr>
+			</thead>
+			<tbody>
+			{% for book in books %}
+        <tr>
+          <td width='100px'>{{book.code}}</td>
+          <td width='250px'>{{book.title}}</td>
+          <td width='100px'>{{book.author}}</td>
+          <td width='150px'>{{book.editorial}}</td>
+          <td width='75px'>{{book.publication_date}}</td>
+          <td width='75px'><a id='' href='#'><img src='../resources/imagenes/eliminar.png' width='25px'></a></td>
+          <td  width='75'><a class='modal-trigger' href='#modal2'><img src='../resources/imagenes/modificar.png' width='25px'></a></td>
+        </tr>
+			{% endfor %}
+			</tbody>
+		</table>
+ 	</div>
+</div>
+
 {% include 'footer.html.twig' %}
