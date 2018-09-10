@@ -1,0 +1,83 @@
+<div class="libros">
+ 	<div id="regLibro">
+ 		<div class="container">
+ 			<form action="" enctype="multipart/form-data" method="post" enctype="multipart/form-data">
+				<div class="row">
+					<div class="col s2"></div>
+					<div class="col s8">
+						<h4 style="color:#BE2D2D">Agregar Libro</h4>
+						<div class="input-field">
+							<input type="text" name="titulo" id="titulo" required>
+							<label for="titulo">Titulo</label>
+						</div>
+						<div class="row">
+							<div class="col s6">
+								<div class="input-field">
+					 				<input type="text" name="autor" id="autor" required>
+					 				<label for="autor">Autor</label>
+					 			</div>
+							</div>
+							<div class="col s6">
+								<div class="input-field">
+					 				<select name="categorias" id="categorias" required>
+									 
+					 			</select>
+					 			<label>Categoria:</label>
+					 			</div>
+							</div>
+						</div>
+			 			
+			 			<div class="row">
+			 				<div class="col s6">
+			 					<div class="input-field">
+					 				<input type="text" name="existencia" id="existencia" required>
+					 				<label for="existencia">Existencia</label>
+					 			</div>
+			 				</div>
+			 				<div class="col s6">
+				 				<div class="file-field input-field">
+				 					<div class="btn waves-effect waves-light red darken-4">
+				        				<span>Imagen</span>
+				        				<input class="card-panel teal lighten-2" id="imagen" name="imagen" type="file" required>
+				      				</div>
+				     				<div class="file-path-wrapper">
+				        				<input class="file-path validate" type="text">
+				      				</div>
+	 							</div>
+	 						</div>
+			 			</div>
+			 			<div class="row">
+			 				<div class="col s6">
+			 					<div class="input-field">
+					 				<input type="text" name="paginas" id="paginas" required>
+					 				<label for="paginas">Numero de Paginas</label>
+					 			</div>
+					 		</div>
+			 				<div class="col s6">
+		 						<div class="input-field">
+					 				<input type="text" name="fechaPublicacion" id="fechaPublicacion"  required>
+					 				<label for="fechaPublicacion">Año de publicacion</label>
+					 			</div>
+			 				</div>
+			 				
+			 			</div>
+
+			 			
+			 			
+			 			<div class="input-field">
+			 				<input type="text" name="editorial" id="editorial" required>
+			 				<label for="editorial">Editorial</label>
+			 			</div>
+				 		<div class="input-field">
+				            <textarea id="descripcion" name="descripcion" class="materialize-textarea" data-length="500" required></textarea>
+				            <label for="descripcion">Descripción</label>
+				        </div>
+				 		<br>
+				 		<button type="submit" class="btn waves-effect waves-light red darken-4" name="guardar">Insertar</button>
+					</div>
+				</div>
+			
+ 			</form>
+ 		</div>
+ 	</div>
+</div>

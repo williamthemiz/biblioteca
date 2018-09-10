@@ -1,0 +1,149 @@
+<div id="regCat" class="row" style="display: none">
+ 		<h2><p>Agregar Categoría</p></h2>
+ 		<div class="container">
+
+ 			<div style="height: 300px;margin: 100px" class="input-field">
+
+	 			<div  class="valign-wrapper">
+
+
+	 			<!--FORMULARIO PARA AGREGAR CATEGORIA-->
+
+
+
+		 			<form id="agregarCategoria" method="post" action="procesos/agregarCategoria.php">
+			 			<input id="nombreCategoria" required type="text" class="validate">
+			            <label for="nombreCategoria">Nombre de la categoría</label>
+		 				<button id="btnAgregarCategoria" class="btn waves-effect waves-light red darken-4" type="submit" name="insertarCategoria">
+		 				Agregar Categoría
+		 				</button>
+
+	 				</form>
+
+
+
+
+ 				
+ 				</div>
+ 			</div>
+ 		</div>
+ 	</div>
+ 	<div id="admCat" style="display: none">
+ 		<div class="container">
+ 			<h3 class="center-align">Categorías</h3>
+ 			<div class="col s12">
+	 			<form id="buscarCategoria" method="post" action="#">
+		 			<div class="row">
+			 			<div class="col s2"></div>
+			 			<div class="col s2">
+			 				<h4>Buscar:</h4>
+			 			</div>
+			 				<div class="col s4">
+				 				<div class="input-field">
+					 				<label class=""><i class="material-icons">search</i></label>
+						 			<input id="buscarNombreCategoria" type="text" name="nombreCategoria">
+		 						</div>
+			 				</div>
+			 				<div class="col s1">
+				 				
+				 			</div>
+			 			<div class="col s3">
+			 			</div>
+		 			</div>
+ 				</form>
+	 			
+
+	 			</div>
+
+
+	 			<!-- MODAL DE MODIFICAR CATEGORIA-->
+
+
+	 			
+	 			<div id="modificar">
+	 				
+	 				<div id="modal1" class="modalModificarCategoria modal modal-fixed-footer" style="height:500px">
+				    <div class="modal-content" style="background-color: #E3E3E3">
+				      <h4><legend>Modificar Categoría</legend></h4><br><br>
+
+
+				      <!--FORMULARIO DE MODIFICAR CATEGORIA-->
+				     
+
+				     
+					     <form id="modificarCategoria" method="post" action="procesos/administrarCategoria.php" >
+					      	<div class="input-field">
+						      	<div class="container">
+							      	<div class="row" >
+							      		<div class="col s4" >
+								      		<h6>ID de categoría:</h6>
+								      		<h6>Nombre de categoría:</h6>
+							      		</div>
+								      	<div class="col s4">
+								      		<input type="text" required id="modIdCategoria" readonly name="id"><br>
+								      		<input type="text" required id="modNombreCategoria" name="nombre"><br>
+								      	</div>
+								      	<div  class="col s1">
+								      		
+								      	</div>
+								      	<div  class="col s2"><br><br>
+								      		<button type="submit" id='btnModificar' class="btn waves-effect waves-light red darken-4">Modificar</button>
+								      	</div>
+							      	</div>
+						      	</div>
+					      	</div>
+					    </form>
+				    </div>
+				     <div class="modal-footer">
+				      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Cancelar</a>
+				    </div>
+				    
+				  </div>
+				 
+	 			</div>
+	 			  
+				  
+	 				<div id='tabla' style="margin-top:100px;margin-bottom: 200px">
+	 					<?php 
+	 						if (isset($_SESSION['categoriaEliminada'])){
+								if ($_SESSION['categoriaEliminada']==true) {
+									echo '<script>sweetAlert("Eliminado","Correctamente","success")</script>';
+									unset($_SESSION["categoriaEliminada"]);
+									}
+									else{
+										echo '<script>sweetAlert("Error","Ocurrió un error al eliminar categoría","error")</script>';
+										unset($_SESSION["categoriaEliminada"]);
+									}
+								}
+							$categoria = new Categoria();
+							$mostrar = $categoria->mostrarCategorias();
+							echo "<table class='striped'>";
+							echo "<thead>";
+							echo "<tr>";
+							echo "<th width='10%'>ID</td>";
+							echo "<th width='80%'>Nombre</th>";
+							echo "<th colspan='2' align='center'>Acción</th>";
+							echo "</tr>";
+							echo "</thead>";
+							foreach ($mostrar as $v) 
+							{
+								echo "<tr>";
+								echo "<td>".$v['id']."</td>";
+								echo "<td>".$v['nombre']."</td>";
+								echo "<td align='center'>";
+								echo "<a onClick='eliminar(".$v['id'].")' class='eliminar' href='procesos/administrarCategoria.php?accion=e&id=".$v['id']."'>";
+								echo "<img width='25px' src='../imagenes/eliminar.png' onclick='return eliminar()'>";
+								echo "</td>";
+								echo "<td>";
+								echo "<a onClick=\"modificar($v[id],'$v[nombre]')\" class=\"modal-trigger\" id=\"trigger\" href=\"#modal1\">";
+								echo "<img src='../imagenes/modificar.png' width='25px'></a>";
+								echo "</td>";
+							}
+							echo "</table>";
+				 		?>
+	 				</div>
+ 				</form>
+ 			</div>
+ 		</div>
+ 	</div>
+ </div>
